@@ -1,0 +1,62 @@
+     Assembly listing for: multiplicacion.mas
+                Assembled: Fri Apr 13 14:42:05 COT 2018
+
+         |         ORG 100           
+100 110B |         LOAD a            
+101 2120 |         STORE mop1        
+102 110C |         LOAD b            
+103 2121 |         STORE mop2        
+104 0110 |         JNS mult          
+105 2120 |         STORE mop1        
+106 110D |         LOAD c            
+107 2121 |         STORE mop2        
+108 0110 |         JNS mult          
+109 210F |         STORE res         
+10A 7000 |         HALT              
+10B 0014 |  a      DEC 20            
+10C 0005 |  b      DEC 5             
+10D 0003 |  c      DEC 3             
+10E 0001 |  uno    DEC 1             
+10F 0000 |  res    DEC 0             
+110 0000 |  mult   DEC 0             
+111 A000 |         CLEAR             
+112 2122 |         STORE mi          
+113 2123 |         STORE mr          
+114 4121 |  mwhile SUBT mop2         
+115 8000 |         SKIPCOND 000      
+116 911E |         JUMP mret         
+117 1123 |         LOAD mr           
+118 3120 |         ADD mop1          
+119 2123 |         STORE mr          
+11A 1122 |         LOAD mi           
+11B 310E |         ADD uno           
+11C 2122 |         STORE mi          
+11D 9114 |         JUMP mwhile       
+11E 1123 |  mret   LOAD mr           
+11F C110 |         JUMPI mult        
+120 0000 |  mop1   DEC 0             
+121 0000 |  mop2   DEC 0             
+122 0000 |  mi     DEC 0             
+123 0000 |  mr     DEC 0             
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          a      |   10B   | 100
+          b      |   10C   | 102
+          c      |   10D   | 106
+          mi     |   122   | 112, 11A, 11C
+          mop1   |   120   | 101, 105, 118
+          mop2   |   121   | 103, 107, 114
+          mr     |   123   | 113, 117, 119, 11E
+          mret   |   11E   | 116
+          mult   |   110   | 104, 108, 11F
+          mwhile |   114   | 11D
+          res    |   10F   | 109
+          uno    |   10E   | 11B
+         --------------------------------------------------
+
+

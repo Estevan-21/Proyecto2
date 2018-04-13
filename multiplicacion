@@ -1,0 +1,41 @@
+
+	ORG 	 0
+u,	Dec 	 1
+a, 	Dec 	 25
+b,	Dec 	 10
+c,	Dec 	 2
+res,	Dec 	 0
+	Load	 a
+	Store	 mop1
+	Load	 b
+	Store	 mop2
+	JnS	 mult
+	Store	 mop1
+	Load	 c
+	Store	 mop2
+	JnS	 mult
+	Store	 res
+	Halt
+
+
+
+mop1, 	Dec 	 0
+mop2,	Dec 	 0
+mi,	Dec 	 0
+mr,	Dec 	 0
+mult,	Dec 	 0
+	Clear
+	Store 	 mi
+	Store 	 mr
+mwhile,	Subt	 mop2
+	Skipcond 0
+	Jump	 mreturn
+	Load	 mr
+	Add	 mop1
+	Store 	 mr
+	Load	 mi
+	Add	 u
+	Store	 mi
+	Jump	 mwhile
+mreturn,Load	 mr
+	JumpI	 mult
