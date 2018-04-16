@@ -1,0 +1,30 @@
+     Assembly listing for: prueba.mas
+                Assembled: Mon Apr 16 09:43:16 COT 2018
+
+         |                          // entrada
+000 5000 |         INPUT             
+001 2009 |         STORE a           
+002 5000 |         INPUT             
+003 200A |         STORE b           
+         |                          // salida
+004 1009 |         LOAD a            
+005 6000 |         OUTPUT            
+006 100A |         LOAD b            
+007 6000 |         OUTPUT            
+         |                          // terminacion
+008 7000 |         HALT              
+         |                          
+009 0000 |  a      DEC 0             
+00A 0000 |  b      DEC 0             
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          a      |   009   | 001, 004
+          b      |   00A   | 003, 006
+         --------------------------------------------------
+
+

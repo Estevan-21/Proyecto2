@@ -16,3 +16,5 @@
 
 #### • Se debe manejar una precisi´on de dos digitos decimales
 
+#### https://marie-js.github.io/MARIE.js/ Simulador virtual
+

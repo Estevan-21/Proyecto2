@@ -1,37 +1,41 @@
-	ORG	 100
-	Load	 a
-	Store	 mop1
-	Load	 b
-	Store	 mop2
-	JnS	 mult
-	Store	 mop1
-	Load	 c
-	Store	 mop2
-	JnS	 mult
-	Store	 res
-	Halt
-a, 	Dec 	 20
-b,	Dec 	 5
-c,	Dec 	 3
+		ORG	 100
+		Load	 a
+		Store	 mop1
+		Load	 b
+		Store	 mop2
+		JnS	 mult
+		Store	 mop1
+		Load	 c
+		Store	 mop2
+		JnS	 mult
+		Store	 res
+		Halt
+		INPUT
+		Store a
+		INPUT
+		Store b
+a, 		Dec 	 20
+b,		Dec 	 5
+c,		Dec 	 3
 uno,	Dec 	 1
 res,	Dec 	 0
 mult,	Dec 	 0
-	Clear
-	Store 	 mi
-	Store 	 mr
+		Clear
+		Store 	 mi
+		Store 	 mr
 mwhile,	Subt	 mop2
-	Skipcond 0
-	Jump	 mret
-	Load	 mr
-	Add	 mop1
-	Store 	 mr
-	Load	 mi
-	Add	 uno
-	Store	 mi
-	Jump	 mwhile
+		Skipcond 0
+		Jump	 mret
+		Load	 mr
+		Add	 mop1
+		Store 	 mr
+		Load	 mi
+		Add	 uno
+		Store	 mi
+		Jump	 mwhile
 mret,	Load	 mr
-	JumpI	 mult
+		JumpI	 mult
 mop1, 	Dec 	 0
 mop2,	Dec 	 0
-mi,	Dec 	 0
-mr,	Dec 	 0
+mi,		Dec 	 0
+mr,		Dec 	 0

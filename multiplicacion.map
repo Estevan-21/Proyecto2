@@ -1,16 +1,16 @@
  -----------------
  Symbol | Location
  -------+---------
- a      |   10B
- b      |   10C
- c      |   10D
- mi     |   122
- mop1   |   120
- mop2   |   121
- mr     |   123
- mret   |   11E
- mult   |   110
- mwhile |   114
- res    |   10F
- uno    |   10E
+ a      |   10F
+ b      |   110
+ c      |   111
+ mi     |   126
+ mop1   |   124
+ mop2   |   125
+ mr     |   127
+ mret   |   122
+ mult   |   114
+ mwhile |   118
+ res    |   113
+ uno    |   112
 

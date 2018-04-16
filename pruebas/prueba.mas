@@ -1,0 +1,15 @@
+// entrada
+INPUT
+Store a
+INPUT
+Store b
+// salida
+Load a
+OUTPUT
+Load b
+OUTPUT
+// terminacion
+Halt
+
+a, dec 0
+b, dec 0
