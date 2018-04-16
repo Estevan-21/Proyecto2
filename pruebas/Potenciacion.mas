@@ -1,0 +1,53 @@
+/ Entrada en decimal
+INPUT
+Store W
+INPUT
+Store Z
+// potencia
+		Load W
+		Store X
+        Store num
+		Subt one
+        Store Y
+        Load Z
+        Subt one
+		Store Z
+ploop,	Load num
+		Store X
+        Jump mloop
+cont,   Load W
+		Subt one
+        Store Y
+		
+		Load Z
+        Subt one
+        Store Z
+
+        Skipcond 400
+        Jump ploop
+        Jump end
+
+/ Multiplicacion
+mloop,   Load num
+         Add X
+         Store num
+
+         Load Y
+         Subt one
+         Store Y
+
+         Skipcond 400 / have we completed the multiplication?
+         Jump mloop / no; repeat loop
+         Jump cont
+
+/ Salida
+end,	Load num
+		Output
+		Halt
+        
+W, DEC 0
+X, DEC 0
+Y, DEC 0
+Z, DEC 0
+num, DEC 0
+one, DEC 1
