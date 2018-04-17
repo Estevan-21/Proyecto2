@@ -1,0 +1,112 @@
+
+/ Entrada en decimal
+INPUT
+Store X1
+INPUT
+Store Y1
+INPUT
+Store X2
+INPUT
+Store Y2
+INPUT
+Store X3
+INPUT
+Store Y3
+
+/ Inicio
+		Load X1
+		Store A
+		Load X2
+		Store B
+		Load X3
+		Store C
+comp1,	Jump ccomp1
+		Load Y1
+		Store A
+		Load Y2
+		Store B
+		Load Y3
+		Store C
+
+/ Combrobar Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
+ccomp1,	Load A
+		Subt B
+		Skipcond 0
+		Jump cancel
+		Load A
+		Subt C
+		Skipcond 0
+		Jump cancel
+		Load B
+		Subt C
+		Skipcond 0
+		Jump cancel
+
+
+/ Comprobar potencias
+	Load X1
+	Store W
+	Load Y1
+	Store Z
+
+// potencia, W es la base y Z es el exponente
+		Load W
+		Store X
+        Store num
+		Subt one
+        Store Y
+        Load Z
+        Subt one
+		Store Z
+ploop,	Load num
+		Store X
+        Jump mloop
+cont,   Load W
+		Subt one
+        Store Y
+		
+		Load Z
+        Subt one
+        Store Z
+
+        Skipcond 400
+        Jump ploop
+        Jump end
+
+/ Multiplicacion
+mloop,   Load num
+         Add X
+         Store num
+
+         Load Y
+         Subt one
+         Store Y
+
+         Skipcond 400 / have we completed the multiplication?
+         Jump mloop / no; repeat loop
+         Jump cont
+
+/ Salida
+end,	Load num
+		Output
+		Jump fin
+cancel, Load neg
+		Output		
+fin,	Halt
+        
+W, DEC 0
+X, DEC 0
+Y, DEC 0
+Z, DEC 0
+X1, DEC 0
+X2, DEC 0
+X3, DEC 0
+Y1, DEC 0
+Y2, DEC 0
+Y3, DEC 0
+num, DEC 0
+one, DEC 1
+A, DEC 0
+B, DEC 0
+C, DEC 0
+neg, Dec -1
