@@ -1,0 +1,23 @@
+INPUT
+Store x
+INPUT
+Store y
+
+loop,	Load x
+	Subt y
+	Skipcond 800
+	Jump end
+	Store x
+	Load count
+	Add uno
+	Store count
+	Jump loop
+
+end,	Load count
+	OUTPUT
+	Halt
+
+x, DEC 0
+y, DEC 0
+count, DEC 0
+uno, DEC 1

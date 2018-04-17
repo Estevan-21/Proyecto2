@@ -1,0 +1,76 @@
+     Assembly listing for: Potenciacion.mas
+                Assembled: Tue Apr 17 17:44:20 COT 2018
+
+         |                          / Entrada en decimal
+000 5000 |         INPUT             
+001 2024 |         STORE W           
+002 5000 |         INPUT             
+003 2027 |         STORE Z           
+         |                          // potencia
+004 1024 |         LOAD W            
+005 2025 |         STORE X           
+006 2028 |         STORE num         
+007 4029 |         SUBT one          
+008 2026 |         STORE Y           
+009 1027 |         LOAD Z            
+00A 4029 |         SUBT one          
+00B 2027 |         STORE Z           
+00C 1028 |  ploop  LOAD num          
+00D 2025 |         STORE X           
+00E 9018 |         JUMP mloop        
+00F 1024 |  cont   LOAD W            
+010 4029 |         SUBT one          
+011 2026 |         STORE Y           
+         |                          		
+012 1027 |         LOAD Z            
+013 4029 |         SUBT one          
+014 2027 |         STORE Z           
+         |                          
+015 8400 |         SKIPCOND 400      
+016 900C |         JUMP ploop        
+017 9021 |         JUMP end          
+         |                          
+         |                          / Multiplicacion
+018 1028 |  mloop  LOAD num          
+019 3025 |         ADD X             
+01A 2028 |         STORE num         
+         |                          
+01B 1026 |         LOAD Y            
+01C 4029 |         SUBT one          
+01D 2026 |         STORE Y           
+         |                          
+01E 8400 |         SKIPCOND 400     / have we completed the multiplication?
+01F 9018 |         JUMP mloop       / no; repeat loop
+020 900F |         JUMP cont         
+         |                          
+         |                          / Salida
+021 1028 |  end    LOAD num          
+022 6000 |         OUTPUT            
+023 7000 |         HALT              
+         |                                  
+024 0000 |  W      DEC 0             
+025 0000 |  X      DEC 0             
+026 0000 |  Y      DEC 0             
+027 0000 |  Z      DEC 0             
+028 0000 |  num    DEC 0             
+029 0001 |  one    DEC 1             
+
+Assembly successful.
+
+         SYMBOL TABLE
+         --------------------------------------------------
+          Symbol | Defined | References 
+         --------+---------+-------------------------------
+          W      |   024   | 001, 004, 00F
+          X      |   025   | 005, 00D, 019
+          Y      |   026   | 008, 011, 01B, 01D
+          Z      |   027   | 003, 009, 00B, 012, 014
+          cont   |   00F   | 020
+          end    |   021   | 017
+          mloop  |   018   | 00E, 01F
+          num    |   028   | 006, 00C, 018, 01A, 021
+          one    |   029   | 007, 00A, 010, 013, 01C
+          ploop  |   00C   | 016
+         --------------------------------------------------
+
+
