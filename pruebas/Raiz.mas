@@ -1,0 +1,13 @@
+INPUT
+Store x
+
+
+
+end,	Load count
+	OUTPUT
+	Halt
+
+x, DEC 0
+DEC 2
+DEC 4
+DEC 8
