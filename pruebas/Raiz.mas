@@ -1,45 +1,72 @@
 INPUT
 Store a
-
+		// division por 2
 		Store x
 		Load dos
 		Store y
-		Jump dloop
-div, 	Store b
-loop, 	Load b
+		JnS div
+        Load count
+	 	Store b
+	 	// res^2
+	 	Load b
 		Store X
-		Load b
 		Store Y
-		Jump mloop
-kk,		Store c
+		JnS mult
+        Load num
+		Store c
+        Output
+loop,	Load c
+		Subt a
+		Skipcond 800
+		Jump end
+		Load b
+		Store x
+		JnS div
+		Load count
+		Store b
+		Store X
+		Store Y
+		JnS mult
+        Load num
+		Store c
+        Load b
+        Output
+		Jump loop
 
-
-
-
-
+// division
+div,	DEC 0
+		Clear
+		Store count
 dloop,	Load x
-	Subt y
-	Skipcond 800
-	Jump div
-	Store x
-	Load count
-	Add uno
-	Store count
-	Jump dloop
+		Subt y
+        Skipcond 400
+        Jump con
+        Add uno
+con,	Skipcond 800
+		JumpI div
+		Store x
+		Load count
+		Add uno
+		Store count
+		Jump dloop
+// multiplicacion
+mult,	DEC 0
+		Clear
+		Store num
+mloop,  Load num
+        Add X
+        Store num
 
-mloop,   Load num
-         Add X
-         Store num
+        Load Y
+        Skipcond 400
+        Subt uno
+        Store Y
 
-         Load Y
-         Subt one
-         Store Y
+        Skipcond 400 / have we completed the multiplication?
+        Jump mloop / no; repeat loop
+        JumpI mult
 
-         Skipcond 400 / have we completed the multiplication?
-         Jump mloop / no; repeat loop
-         Jump kk
-
-end,	Load count
+end,	Load b
 	OUTPUT
 	Halt
 

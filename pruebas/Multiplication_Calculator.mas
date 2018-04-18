@@ -23,6 +23,8 @@ loop,    Load num
 
 / Output result to user then halt program
 Load num
+Add uno
+Store num
 Output
 Halt
 
