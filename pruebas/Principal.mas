@@ -28,6 +28,14 @@ comp1,	Load Y1
 		Load Y3
 		Store C
 		Jump ccomp1
+/ Comprobar potencias
+cc,		Load X1
+		Store W
+		Load Y1
+		Store Z
+		Jns pote
+		Jump end
+
         
 
 / COMPROBAR Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
@@ -56,10 +64,11 @@ ab,		Load count1
         Jump comp1
 
 / DIVISION, divide X sobre Y 
+div,    DEC 0
 dloop,	Load X
 		Subt Y
 		Skipcond 800
-		Jump end
+		JumpI div
 		Store X
 		Load count
 		Add one
@@ -67,14 +76,8 @@ dloop,	Load X
 		Jump dloop
 
 
-
-/ Comprobar potencias
-cc,	Load X1
-	Store W
-	Load Y1
-	Store Z
-
 // POTENCIA, W es la base y Z es el exponente
+pote,   DEC 0
 		Load W
 		Store X
         Store num
@@ -85,7 +88,7 @@ cc,	Load X1
 		Store Z
 ploop,	Load num
 		Store X
-        Jump mloop
+        Jns mloop
 cont,   Load W
 		Subt one
         Store Y
@@ -96,20 +99,21 @@ cont,   Load W
 
         Skipcond 400
         Jump ploop
-        Jump end
+        JumpI pote
 
 / MULTIPLICACION, multiplica X por Y
-mloop,   Load num
-         Add X
-         Store num
+mloop,  dec 0 
+mult,	Load num
+        Add X
+        Store num
 
-         Load Y
-         Subt one
-         Store Y
+        Load Y
+        Subt one
+        Store Y
 
-         Skipcond 400 / have we completed the multiplication?
-         Jump mloop / no; repeat loop
-         Jump cont
+        Skipcond 400 / have we completed the multiplication?
+        Jump mult / no; repeat loop
+        JumpI mloop
 
 / Salida
 end,	Load num
