@@ -1,13 +1,56 @@
 INPUT
-Store x
+Store a
+
+		Store x
+		Load dos
+		Store y
+		Jump dloop
+div, 	Store b
+loop, 	Load b
+		Store X
+		Load b
+		Store Y
+		Jump mloop
+kk,		Store c
 
 
+
+
+
+dloop,	Load x
+	Subt y
+	Skipcond 800
+	Jump div
+	Store x
+	Load count
+	Add uno
+	Store count
+	Jump dloop
+
+mloop,   Load num
+         Add X
+         Store num
+
+         Load Y
+         Subt one
+         Store Y
+
+         Skipcond 400 / have we completed the multiplication?
+         Jump mloop / no; repeat loop
+         Jump kk
 
 end,	Load count
 	OUTPUT
 	Halt
 
+a, 	DEC 0
+b, DEC 0
+c, DEC 0
+dos,DEC 2
 x, DEC 0
-DEC 2
-DEC 4
-DEC 8
+y, DEC 0
+count, DEC 0
+uno, DEC 1
+X, DEC 0
+Y, DEC 0
+num, DEC 0

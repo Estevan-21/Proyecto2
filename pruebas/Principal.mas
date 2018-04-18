@@ -13,43 +13,68 @@ Store X3
 INPUT
 Store Y3
 
-/ Inicio
+/ INICIO
 		Load X1
 		Store A
 		Load X2
 		Store B
 		Load X3
 		Store C
-comp1,	Jump ccomp1
-		Load Y1
+		Jump ccomp1
+comp1,	Load Y1
 		Store A
 		Load Y2
 		Store B
 		Load Y3
 		Store C
+		Jump ccomp1
+        
 
-/ Combrobar Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
-ccomp1,	Load A
-		Subt B
-		Skipcond 0
-		Jump cancel
+/ COMPROBAR Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
+ccomp1,	Load count1
+		Add one
+        Store count1
 		Load A
-		Subt C
-		Skipcond 0
+		Subt B
+		Skipcond 400
+        Jump do
 		Jump cancel
-		Load B
+do,		Load A
 		Subt C
-		Skipcond 0
+		Skipcond 400
+        jump tr
 		Jump cancel
+tr,		Load B
+		Subt C
+		Skipcond 400      
+        Jump ab
+		Jump cancel
+ab,		Load count1
+		Subt tree
+        Skipcond 0
+		Jump cc
+        Jump comp1
+
+/ DIVISION, divide X sobre Y 
+dloop,	Load X
+		Subt Y
+		Skipcond 800
+		Jump end
+		Store X
+		Load count
+		Add one
+		Store count
+		Jump dloop
+
 
 
 / Comprobar potencias
-	Load X1
+cc,	Load X1
 	Store W
 	Load Y1
 	Store Z
 
-// potencia, W es la base y Z es el exponente
+// POTENCIA, W es la base y Z es el exponente
 		Load W
 		Store X
         Store num
@@ -73,7 +98,7 @@ cont,   Load W
         Jump ploop
         Jump end
 
-/ Multiplicacion
+/ MULTIPLICACION, multiplica X por Y
 mloop,   Load num
          Add X
          Store num
@@ -106,7 +131,10 @@ Y2, DEC 0
 Y3, DEC 0
 num, DEC 0
 one, DEC 1
+tree, DEC 2
 A, DEC 0
 B, DEC 0
 C, DEC 0
 neg, Dec -1
+count, DEC 0
+count1, DEC 0
