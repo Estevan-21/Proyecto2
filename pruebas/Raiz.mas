@@ -13,12 +13,11 @@ Store a
 		Store Y
 		JnS mult
         Load num
-		Store c
-        Output
+		Store c        
 loop,	Load c
 		Subt a
 		Skipcond 800
-		Jump end
+		Jump loop2
 		Load b
 		Store x
 		JnS div
@@ -29,10 +28,23 @@ loop,	Load c
 		JnS mult
         Load num
 		Store c
-        Load b
-        Output
+        Load b      
 		Jump loop
-
+loop2,	Load c
+		Subt a
+		Skipcond 0
+		Jump end
+		Load b
+		Add uno
+		Store b
+		Store b
+		Store X
+		Store Y
+		JnS mult
+        Load num
+		Store c
+		Jump loop2
+		
 // division
 div,	DEC 0
 		Clear
@@ -67,8 +79,9 @@ mloop,  Load num
         JumpI mult
 
 end,	Load b
-	OUTPUT
-	Halt
+		Subt uno
+		OUTPUT
+		Halt
 
 a, 	DEC 0
 b, DEC 0
