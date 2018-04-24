@@ -84,13 +84,13 @@ end,	Load b
 		Halt
 
 a, 	DEC 0
-b, DEC 0
-c, DEC 0
-dos,DEC 2
-x, DEC 0
-y, DEC 0
-count, DEC 0
-uno, DEC 1
-X, DEC 0
-Y, DEC 0
-num, DEC 0
+b, 	DEC 0
+c, 	DEC 0
+dos,  	DEC 2
+x, 	DEC 0
+y, 	DEC 0
+count, 	DEC 0
+uno, 	DEC 1
+X, 	DEC 0
+Y, 	DEC 0
+num, 	DEC 0
