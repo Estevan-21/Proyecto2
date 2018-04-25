@@ -1,0 +1,21 @@
+Input
+Store A
+
+	Load A
+    Store valAbs
+    JnS abs
+    Load valAbs
+	Output
+	Halt
+
+abs,	DEC 0
+		Load valAbs
+		Skipcond 0
+		JumpI abs
+		Clear
+		Subt valAbs
+		Store valAbs
+		JumpI abs
+        
+valAbs,	DEC 0
+A,	DEC 0

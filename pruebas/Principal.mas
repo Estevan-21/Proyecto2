@@ -36,8 +36,6 @@ cc,		Load X1
 		Jns pote
 		Jump end
 
-        
-
 / COMPROBAR Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
 ccomp1,	Load count1
 		Add one
@@ -58,8 +56,128 @@ tr,		Load B
 ab,		Load count1
 		Subt tree
         Skipcond 0
-		Jump cc
+		Jump ccomp2
         Jump comp1
+
+ccomp2,	Load X2
+		Subt X1
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Store temp
+		Load Y2
+		Subt Y1
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Add temp
+		Store A
+
+		Load X2
+		Subt X3
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Store temp
+		Load Y2
+		Subt Y3
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Add temp
+		Store B
+
+		Load X3
+		Subt X1
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Store temp
+		Load Y3
+		Subt Y1
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store X 
+		Store Y
+		JnS mult
+		Load num
+		Add temp
+		Store C
+		Jns comp11
+
+comp11,	Load A
+		Subt B
+		Skipcond 800
+		Jump comp21
+		Jump comp12
+comp12,	Load B
+		Subt C
+		Skipcond 800
+		Jump comp21
+		Jump comp13
+comp13,	Load B
+		Add	C
+		Subt A
+		Skipcond 400
+		Jump comp21
+		Jump noes
+comp21,	Load B
+		Subt A
+		Skipcond 800
+		Jump comp31
+		Jump comp22
+comp22,	Load B
+		Subt C
+		Skipcond 800
+		Jump comp31
+		Jump comp23
+comp23,	Load A
+		Add B
+		Subt C
+		Skipcond 400
+		Jump comp31
+		Jump noes
+comp31,	Load C
+		Subt B
+		Skipcond 800
+		Jump sies
+		Jump comp32
+comp32,	Load C
+		Subt A
+		Skipcond 800
+		Jump sies
+		Jump comp33
+comp33,	Load A
+		Add B
+		Subt C
+		Skipcond 400
+		Jump noes
+		Jump sies
+noes,	Jump cancel
+sies, 	Load cero
+		Store res
+		Jump ab
 
 / DIVISION, divide X sobre Y 
 div,	DEC 0
@@ -121,6 +239,7 @@ mloop,  Load num
 
 //RAIZ: Saca la raíz de lo que haya en el acumulador
 		// division por 2
+raiz,	DEC 0
 		Store X
 		Load dos
 		Store Y
@@ -164,8 +283,16 @@ loop2,	Load c
         Load num
 		Store c
 		Jump loop2
-		
 
+abs,	DEC 0
+		Load valAbs
+		Skipcond 0
+		JumpI abs
+		Clear
+		Subt valAbs
+		Store valAbs
+		JumpI abs
+		
 / Salida
 end,	Load num
 		Output
@@ -185,6 +312,7 @@ Y1, DEC 0
 Y2, DEC 0
 Y3, DEC 0
 num,	DEC 0
+cero,	DEC 0
 one,	DEC 1
 dos,	DEC 2
 tree,	DEC 2
@@ -194,6 +322,9 @@ C,	DEC 0
 a,	DEC 0
 b,	DEC 0
 c,	DEC 0
-neg,	Dec -1
+neg,	DEC -1
 count,	DEC 0
 count1,	DEC 0
+temp,	DEC 0
+res,	DEC 0
+valAbs,	DEC 0
