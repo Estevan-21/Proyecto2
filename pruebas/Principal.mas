@@ -45,13 +45,11 @@ ccomp1,	Load count1
 		Load A
 		Subt B
 		Skipcond 400
-        Jump do
-		Jump cancel
+        Jump ab
 do,		Load A
 		Subt C
 		Skipcond 400
-        jump tr
-		Jump cancel
+        jump ab	
 tr,		Load B
 		Subt C
 		Skipcond 400      
