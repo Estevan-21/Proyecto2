@@ -4,22 +4,20 @@ Store W
 INPUT
 Store Z
 // potencia
-	Load W
-	Store X
+        Load W
+        Store X
         Store num
-	Subt one
         Store Y
         Load Z
         Subt one
-	Store Z
-ploop,	Load num
-	Store X
+        Store Z
+ploop,  Load num
+        Store X
         JnS mult
         Load W
-	Subt one
         Store Y
-		
-	Load Z
+                
+        Load Z
         Subt one
         Store Z
 
@@ -28,12 +26,15 @@ ploop,	Load num
         Jump end
 
 / Multiplicacion
-mult,   DEC 0 
+mult,   DEC 0
+        Clear
+        Store num
 mloop,  Load num
         Add X
         Store num
 
         Load Y
+        Skipcond 400
         Subt one
         Store Y
 
@@ -42,9 +43,9 @@ mloop,  Load num
         JumpI mult
 
 / Salida
-end,	Load num
-	Output
-	Halt
+end,    Load num
+        Output
+        Halt
         
 W, DEC 0
 X, DEC 0
