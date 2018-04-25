@@ -81,22 +81,20 @@ con,	Skipcond 800
 
 // POTENCIA, W es la base y Z es el exponente
 pote,   DEC 0
-		Load W
-		Store X
+        Load W
+        Store X
         Store num
-		Subt one
         Store Y
         Load Z
         Subt one
-		Store Z
-ploop,	Load num
-		Store X
-        Jns mloop
-cont,   Load W
-		Subt one
+        Store Z
+ploop,  Load num
+        Store X
+        JnS mult
+        Load W
         Store Y
-		
-		Load Z
+                
+        Load Z
         Subt one
         Store Z
 
@@ -105,18 +103,21 @@ cont,   Load W
         JumpI pote
 
 / MULTIPLICACION, multiplica X por Y
-mloop,  dec 0 
-mult,	Load num
+mult,   DEC 0
+        Clear
+        Store num
+mloop,  Load num
         Add X
         Store num
 
         Load Y
+        Skipcond 400
         Subt one
         Store Y
 
         Skipcond 400 / have we completed the multiplication?
-        Jump mult / no; repeat loop
-		JumpI mloop
+        Jump mloop / no; repeat loop
+        JumpI mult
 
 //RAIZ: Saca la raíz de lo que haya en el acumulador
 		// division por 2
