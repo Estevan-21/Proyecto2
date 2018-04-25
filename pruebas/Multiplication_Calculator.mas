@@ -14,6 +14,7 @@ loop,    Load num
          Store num
 
          Load Y
+         Skipcond 400
          Subt one
          Store Y
 
