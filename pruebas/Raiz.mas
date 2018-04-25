@@ -1,5 +1,6 @@
 INPUT
 Store a
+//RAIZ: Saca la raíz de lo que haya en x
 		// division por 2
 		Store x
 		Load dos

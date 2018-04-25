@@ -64,10 +64,15 @@ ab,		Load count1
         Jump comp1
 
 / DIVISION, divide X sobre Y 
-div,    DEC 0
+div,	DEC 0
+		Clear
+		Store count
 dloop,	Load X
 		Subt Y
-		Skipcond 800
+        Skipcond 400
+        Jump con
+        Add one
+con,	Skipcond 800
 		JumpI div
 		Store X
 		Load count
@@ -113,7 +118,54 @@ mult,	Load num
 
         Skipcond 400 / have we completed the multiplication?
         Jump mult / no; repeat loop
-        JumpI mloop
+		JumpI mloop
+
+//RAIZ: Saca la raíz de lo que haya en el acumulador
+		// division por 2
+		Store X
+		Load dos
+		Store Y
+		JnS div
+        Load count
+	 	Store b
+	 	// res^2
+	 	Load b
+		Store X
+		Store Y
+		JnS mult
+        Load num
+		Store c        
+loop,	Load c
+		Subt a
+		Skipcond 800
+		Jump loop2
+		Load b
+		Store X
+		JnS div
+		Load count
+		Store b
+		Store X
+		Store Y
+		JnS mult
+        Load num
+		Store c
+        Load b      
+		Jump loop
+loop2,	Load c
+		Subt a
+		Skipcond 0
+		Jump end
+		Load b
+		Add one
+		Store b
+		Store b
+		Store X
+		Store Y
+		JnS mult
+        Load num
+		Store c
+		Jump loop2
+		
 
 / Salida
 end,	Load num
@@ -123,22 +175,26 @@ cancel, Load neg
 		Output		
 fin,	Halt
         
-W, DEC 0
-X, DEC 0
-Y, DEC 0
-Z, DEC 0
+W,	DEC 0
+X,	DEC 0
+Y,	DEC 0
+Z,	DEC 0
 X1, DEC 0
 X2, DEC 0
 X3, DEC 0
 Y1, DEC 0
 Y2, DEC 0
 Y3, DEC 0
-num, DEC 0
-one, DEC 1
-tree, DEC 2
-A, DEC 0
-B, DEC 0
-C, DEC 0
-neg, Dec -1
-count, DEC 0
-count1, DEC 0
+num,	DEC 0
+one,	DEC 1
+dos,	DEC 2
+tree,	DEC 2
+A,	DEC 0
+B,	DEC 0
+C,	DEC 0
+a,	DEC 0
+b,	DEC 0
+c,	DEC 0
+neg,	Dec -1
+count,	DEC 0
+count1,	DEC 0
