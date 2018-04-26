@@ -19,10 +19,15 @@ Store Y3
 Area,	DEC 0
 		Load Y2
 		Subt Y3
+		Skipcond 0
+		Jump ba		
         Store valAbs
+        Load n1
+		Add neg
+		Store n1
 		Jns abs
-		Load valAbs
-		Store F
+		Load valAbs	
+ba,		Store F
 		Load X1
 		Store X
 		Load F
@@ -32,10 +37,15 @@ Area,	DEC 0
 		Store G
 		Load Y3
 		Subt Y1
+		Skipcond 0
+		Jump bb
         Store valAbs
+        Load n2
+		Add neg
+		Store n1
 		Jns abs
 		Load valAbs
-		Store H
+bb,		Store H
 		Load X2
 		Store X
 		Load H
@@ -45,10 +55,15 @@ Area,	DEC 0
 		Store I
 		Load Y1
 		Subt Y2
+		Skipcond 0
+		Jump bc
         Store valAbs
+        Load n1
+		Add neg
+		Store n3
 		Jns abs
 		Load valAbs
-		Store J
+bc,		Store J
 		Load X3
 		Store X
 		Load J
@@ -56,12 +71,39 @@ Area,	DEC 0
 		Jns mult
 		Load num
 		Store K
+		Load n1
+		Skipcond 0
+		Jump ca
 		Load G
+		Store p
+		Load G
+		Clear
+		Subt p
+		Store G	
+ca,		Load G
 		Add I
 		Store G
-		Load G
+		Load n2
+		Skipcond 0
+		Jump cb
+		Load 
+		Store p
+		Load K
+		Clear
+		Subt p
+		Store K
+cb,		Load G
 		Add K
 		Store G
+		Load n3
+		Skipcond 0
+		Jump cc
+		Load K
+		Store p
+		Load G
+		Clear
+		Subt p
+		Store G	
 		Load G
 		Store valAbs
 		Jns abs
@@ -145,6 +187,7 @@ C,	DEC 0
 a,	DEC 0
 b,	DEC 0
 c,	DEC 0
+p,	DEC 0
 F,	DEC 0
 G,	DEC 0
 H,	DEC 0
@@ -158,4 +201,6 @@ temp,	DEC 0
 res,	DEC 0
 valAbs,	DEC 0
 area,	DEC 0
-n,		Dec 0
+n1,		Dec 0
+n2,		Dec 0
+n3,		Dec 0

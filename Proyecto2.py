@@ -51,7 +51,8 @@ def  comprobar(x,y,z):
 
 
 def area(x1,x2,x3,y1,y2,y3):
-    area_triangulo=1/2*abs(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2))
+    print (y3-y1)
+    area_triangulo=abs(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2))
     print ("Area",area_triangulo)
 
 def perimetro(ladoA,ladoB,ladoC):
