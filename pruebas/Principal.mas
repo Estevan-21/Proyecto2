@@ -1,330 +1,391 @@
 
-/ Entrada en decimal
-INPUT
-Store X1
-INPUT
-Store Y1
-INPUT
-Store X2
-INPUT
-Store Y2
-INPUT
-Store X3
-INPUT
-Store Y3
+	/ Entrada en decimal
+	INPUT
+	Store X1
+	INPUT
+	Store Y1
+	INPUT
+	Store X2
+	INPUT
+	Store Y2
+	INPUT
+	Store X3
+	INPUT
+	Store Y3
 
-/ INICIO
-		Load X1
-		Store A
-		Load X2
-		Store B
-		Load X3
-		Store C
-		Jump ccomp1
-comp1,	Load Y1
-		Store A
-		Load Y2
-		Store B
-		Load Y3
-		Store C
-		Jump ccomp1
-/ Comprobar potencias
-cc,		Load X1
-		Store W
-		Load Y1
-		Store Z
-		Jns pote
-		Jump end
+	/ INICIO
+			Load X1
+			Store A
+			Load X2
+			Store B
+			Load X3
+			Store C
+			Jump ccomp1
+	comp1,	Load Y1
+			Store A
+			Load Y2
+			Store B
+			Load Y3
+			Store C
+			Jump ccomp1
+	/ Comprobar potencias
+	cc,		Load X1
+			Store W
+			Load Y1
+			Store Z
+			Jns pote
+			Jump end
 
-/ COMPROBAR Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
-ccomp1,	Load count1
-		Add one
-        Store count1
-		Load A
-		Subt B
-		Skipcond 400
-        Jump ab
-do,		Load A
-		Subt C
-		Skipcond 400
-        jump ab	
-tr,		Load B
-		Subt C
-		Skipcond 400      
-        Jump ab
-		Jump cancel
-ab,		Load count1
-		Subt tree
-        Skipcond 0
-		Jump ccomp2
-        Jump comp1
+	/ COMPROBAR Colineal, si en la salida hay un -1 al final indica que hay algun punto colineal y no es un triangulo, si si es un triangulo tiene como salida la potencia de X1 a la Y1
+	ccomp1,	Load count1
+			Add one
+	        Store count1
+			Load A
+			Subt B
+			Skipcond 400
+	        Jump ab
+	do,		Load A
+			Subt C
+			Skipcond 400
+	        jump ab	
+	tr,		Load B
+			Subt C
+			Skipcond 400      
+	        Jump ab
+			Jump cancel
+	ab,		Load count1
+			Subt tree
+	        Skipcond 0
+			Jump ccomp2
+	        Jump comp1
 
-ccomp2,	Load X2
-		Subt X1
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Store temp
-		Load Y2
-		Subt Y1
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Add temp
-		Store A
+	ccomp2,	Load X2
+			Subt X1
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Store temp
+			Load Y2
+			Subt Y1
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Add temp
+			Store A
 
-		Load X2
-		Subt X3
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Store temp
-		Load Y2
-		Subt Y3
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Add temp
-		Store B
+			Load X2
+			Subt X3
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Store temp
+			Load Y2
+			Subt Y3
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Add temp
+			Store B
 
-		Load X3
-		Subt X1
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Store temp
-		Load Y3
-		Subt Y1
-		Store valAbs
-		Jns abs
-		Load valAbs
-		Store X 
-		Store Y
-		JnS mult
-		Load num
-		Add temp
-		Store C
-		Jns comp11
+			Load X3
+			Subt X1
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Store temp
+			Load Y3
+			Subt Y1
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store X 
+			Store Y
+			JnS mult
+			Load num
+			Add temp
+			Store C
+			Jns comp11
 
-comp11,	Load A
-		Subt B
-		Skipcond 800
-		Jump comp21
-		Jump comp12
-comp12,	Load B
-		Subt C
-		Skipcond 800
-		Jump comp21
-		Jump comp13
-comp13,	Load B
-		Add	C
-		Subt A
-		Skipcond 400
-		Jump comp21
-		Jump noes
-comp21,	Load B
-		Subt A
-		Skipcond 800
-		Jump comp31
-		Jump comp22
-comp22,	Load B
-		Subt C
-		Skipcond 800
-		Jump comp31
-		Jump comp23
-comp23,	Load A
-		Add B
-		Subt C
-		Skipcond 400
-		Jump comp31
-		Jump noes
-comp31,	Load C
-		Subt B
-		Skipcond 800
-		Jump sies
-		Jump comp32
-comp32,	Load C
-		Subt A
-		Skipcond 800
-		Jump sies
-		Jump comp33
-comp33,	Load A
-		Add B
-		Subt C
-		Skipcond 400
-		Jump noes
-		Jump sies
-noes,	Jump cancel
-sies, 	Load cero
-		Store res
-		Jump ab
+	comp11,	Load A
+			Subt B
+			Skipcond 800
+			Jump comp21
+			Jump comp12
+	comp12,	Load B
+			Subt C
+			Skipcond 800
+			Jump comp21
+			Jump comp13
+	comp13,	Load B
+			Add	C
+			Subt A
+			Skipcond 400
+			Jump comp21
+			Jump noes
+	comp21,	Load B
+			Subt A
+			Skipcond 800
+			Jump comp31
+			Jump comp22
+	comp22,	Load B
+			Subt C
+			Skipcond 800
+			Jump comp31
+			Jump comp23
+	comp23,	Load A
+			Add B
+			Subt C
+			Skipcond 400
+			Jump comp31
+			Jump noes
+	comp31,	Load C
+			Subt B
+			Skipcond 800
+			Jump sies
+			Jump comp32
+	comp32,	Load C
+			Subt A
+			Skipcond 800
+			Jump sies
+			Jump comp33
+	comp33,	Load A
+			Add B
+			Subt C
+			Skipcond 400
+			Jump noes
+			Jump sies
+	noes,	Jump cancel
+	sies, 	Load cero
+			Store res
+			Jump ab
 
-/ DIVISION, divide X sobre Y 
-div,	DEC 0
-		Clear
-		Store count
-dloop,	Load X
-		Subt Y
-        Skipcond 400
-        Jump con
-        Add one
-con,	Skipcond 800
-		JumpI div
-		Store X
-		Load count
-		Add one
-		Store count
-		Jump dloop
+	/ DIVISION, divide X sobre Y 
+	div,	DEC 0
+			Clear
+			Store count
+	dloop,	Load X
+			Subt Y
+	        Skipcond 400
+	        Jump con
+	        Add one
+	con,	Skipcond 800
+			JumpI div
+			Store X
+			Load count
+			Add one
+			Store count
+			Jump dloop
 
 
-// POTENCIA, W es la base y Z es el exponente
-pote,   DEC 0
-        Load W
-        Store X
-        Store num
-        Store Y
-        Load Z
-        Subt one
-        Store Z
-ploop,  Load num
-        Store X
-        JnS mult
-        Load W
-        Store Y
-                
-        Load Z
-        Subt one
-        Store Z
+	// POTENCIA, W es la base y Z es el exponente
+	pote,   DEC 0
+	        Load W
+	        Store X
+	        Store num
+	        Store Y
+	        Load Z
+	        Subt one
+	        Store Z
+	ploop,  Load num
+	        Store X
+	        JnS mult
+	        Load W
+	        Store Y
+	                
+	        Load Z
+	        Subt one
+	        Store Z
 
-        Skipcond 400
-        Jump ploop
-        JumpI pote
+	        Skipcond 400
+	        Jump ploop
+	        JumpI pote
 
-/ MULTIPLICACION, multiplica X por Y
-mult,   DEC 0
-        Clear
-        Store num
-mloop,  Load num
-        Add X
-        Store num
+	/ MULTIPLICACION, multiplica X por Y
+	mult,   DEC 0
+	        Clear
+	        Store num
+	mloop,  Load num
+	        Add X
+	        Store num
 
-        Load Y
-        Skipcond 400
-        Subt one
-        Store Y
+	        Load Y
+	        Skipcond 400
+	        Subt one
+	        Store Y
 
-        Skipcond 400 / have we completed the multiplication?
-        Jump mloop / no; repeat loop
-        JumpI mult
+	        Skipcond 400 / have we completed the multiplication?
+	        Jump mloop / no; repeat loop
+	        JumpI mult
 
-//RAIZ: Saca la raíz de lo que haya en el acumulador
-		// division por 2
-raiz,	DEC 0
-		Store X
-		Load dos
-		Store Y
-		JnS div
-        Load count
-	 	Store b
-	 	// res^2
-	 	Load b
-		Store X
-		Store Y
-		JnS mult
-        Load num
-		Store c        
-loop,	Load c
-		Subt a
-		Skipcond 800
-		Jump loop2
-		Load b
-		Store X
-		JnS div
-		Load count
-		Store b
-		Store X
-		Store Y
-		JnS mult
-        Load num
-		Store c
-        Load b      
-		Jump loop
-loop2,	Load c
-		Subt a
-		Skipcond 0
-		Jump end
-		Load b
-		Add one
-		Store b
-		Store b
-		Store X
-		Store Y
-		JnS mult
-        Load num
-		Store c
-		Jump loop2
+	//RAIZ: Saca la raíz de lo que haya en el acumulador
+			// division por 2
+	raiz,	DEC 0
+			Store X
+			Load dos
+			Store Y
+			JnS div
+	        Load count
+		 	Store b
+		 	// res^2
+		 	Load b
+			Store X
+			Store Y
+			JnS mult
+	        Load num
+			Store c        
+	loop,	Load c
+			Subt a
+			Skipcond 800
+			Jump loop2
+			Load b
+			Store X
+			JnS div
+			Load count
+			Store b
+			Store X
+			Store Y
+			JnS mult
+	        Load num
+			Store c
+	        Load b      
+			Jump loop
+	loop2,	Load c
+			Subt a
+			Skipcond 0
+			Jump end
+			Load b
+			Add one
+			Store b
+			Store b
+			Store X
+			Store Y
+			JnS mult
+	        Load num
+			Store c
+			Jump loop2
 
-abs,	DEC 0
-		Load valAbs
-		Skipcond 0
-		JumpI abs
-		Clear
-		Subt valAbs
-		Store valAbs
-		JumpI abs
-		
-/ Salida
-end,	Load num
-		Output
-		Jump fin
-cancel, Load neg
-		Output		
-fin,	Halt
-        
-W,	DEC 0
-X,	DEC 0
-Y,	DEC 0
-Z,	DEC 0
-X1, DEC 0
-X2, DEC 0
-X3, DEC 0
-Y1, DEC 0
-Y2, DEC 0
-Y3, DEC 0
-num,	DEC 0
-cero,	DEC 0
-one,	DEC 1
-dos,	DEC 2
-tree,	DEC 2
-A,	DEC 0
-B,	DEC 0
-C,	DEC 0
-a,	DEC 0
-b,	DEC 0
-c,	DEC 0
-neg,	DEC -1
-count,	DEC 0
-count1,	DEC 0
-temp,	DEC 0
-res,	DEC 0
-valAbs,	DEC 0
+	abs,	DEC 0
+			Load valAbs
+			Skipcond 0
+			JumpI abs
+			Clear
+			Subt valAbs
+			Store valAbs
+			JumpI abs
+
+	// AREA
+	Area,	DEC 0
+			Load Y2
+			Subt Y3
+			Store F
+			Load X1
+			Store X
+			Load F
+			Store Y
+			Jns mult
+			Load num
+			Store G
+			Load Y3
+			Subt Y1
+			Store H
+			Load X2
+			Store X
+			Load H
+			Store Y
+			Jns mult
+			Load num
+			Store I
+			Load Y1
+			Subt Y2
+			Store J
+			Load X3
+			Store X
+			Load J
+			Store Y
+			Jns mult
+			Load num
+			Store K
+			Load G
+			Add I
+			Store G
+			Load G
+			Add K
+			Store G
+			Load G
+			Store valAbs
+			Jns abs
+			Load valAbs
+			Store G
+			Load G
+			Store X
+			Load dos
+			Store Y
+			Jns div
+			Load count
+			Store area
+
+
+
+			
+	/ Salida
+	end,	Load num
+			Output
+			Jump fin
+	cancel, Load neg
+			Output		
+	fin,	Halt
+	        
+	W,	DEC 0
+	X,	DEC 0
+	Y,	DEC 0
+	Z,	DEC 0
+	X1, DEC 0
+	X2, DEC 0
+	X3, DEC 0
+	Y1, DEC 0
+	Y2, DEC 0
+	Y3, DEC 0
+	num,	DEC 0
+	cero,	DEC 0
+	one,	DEC 1
+	dos,	DEC 2
+	tree,	DEC 2
+	A,	DEC 0
+	B,	DEC 0
+	C,	DEC 0
+	a,	DEC 0
+	b,	DEC 0
+	c,	DEC 0
+	F,	DEC 0
+	G,	DEC 0
+	H,	DEC 0
+	I,	DEC	0
+	J,	DEC	0
+	K,	DEC	0
+	neg,	DEC -1
+	count,	DEC 0
+	count1,	DEC 0
+	temp,	DEC 0
+	res,	DEC 0
+	valAbs,	DEC 0
+	area,	DEC 0
