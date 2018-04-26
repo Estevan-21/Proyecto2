@@ -1,0 +1,150 @@
+INPUT
+Store X1
+INPUT
+Store Y1
+INPUT
+Store X2
+INPUT
+Store Y2
+INPUT
+Store X3
+INPUT
+Store Y3
+
+	Jns area
+	Jump end
+
+
+/ DIVISION, divide X sobre Y 
+div,	DEC 0
+		Clear
+		Store count
+dloop,	Load X
+		Subt Y
+        Skipcond 400
+        Jump con
+        Add one
+con,	Skipcond 800
+		JumpI div
+		Store X
+		Load count
+		Add one
+		Store count
+		Jump dloop
+
+/Multiplicacion
+mult,   DEC 0
+        Clear
+        Store num
+mloop,  Load num
+        Add X
+        Store num
+
+        Load Y
+        Skipcond 400
+        Subt one
+        Store Y
+
+        Skipcond 400 / have we completed the multiplication?
+        Jump mloop / no; repeat loop
+        JumpI mult
+
+// VALOR ABSOLUTO
+abs,	DEC 0
+		Load valAbs
+		Skipcond 0
+		JumpI abs
+		Clear
+		Subt valAbs
+		Store valAbs
+		JumpI abs
+
+// AREA
+Area,	DEC 0
+		Load Y2
+		Subt Y3
+		Store F
+		Load X1
+		Store X
+		Load F
+		Store Y
+		Jns mult
+		Load num
+		Store G
+		Load Y3
+		Subt Y1
+		Store H
+		Load X2
+		Store X
+		Load H
+		Store Y
+		Jns mult
+		Load num
+		Store I
+		Load Y1
+		Subt Y2
+		Store J
+		Load X3
+		Store X
+		Load J
+		Store Y
+		Jns mult
+		Load num
+		Store K
+		Load G
+		Add I
+		Store G
+		Load G
+		Add K
+		Store G
+		Load G
+		Store valAbs
+		Jns abs
+		Load valAbs
+		Store G
+		Load G
+		Store X
+		Load dos
+		Store Y
+		Jns div
+		Load count
+		Store area
+
+end,	Load area
+		Output 
+		Halt
+
+W,	DEC 0
+X,	DEC 0
+Y,	DEC 0
+Z,	DEC 0
+X1, DEC 0
+X2, DEC 0
+X3, DEC 0
+Y1, DEC 0
+Y2, DEC 0
+Y3, DEC 0
+num,	DEC 0
+cero,	DEC 0
+one,	DEC 1
+dos,	DEC 2
+tree,	DEC 2
+A,	DEC 0
+B,	DEC 0
+C,	DEC 0
+a,	DEC 0
+b,	DEC 0
+c,	DEC 0
+F,	DEC 0
+G,	DEC 0
+H,	DEC 0
+I,	DEC	0
+J,	DEC	0
+K,	DEC	0
+neg,	DEC -1
+count,	DEC 0
+count1,	DEC 0
+temp,	DEC 0
+res,	DEC 0
+valAbs,	DEC 0
+area,	DEC 0
