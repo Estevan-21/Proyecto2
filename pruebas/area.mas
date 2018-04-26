@@ -11,58 +11,17 @@ Store X3
 INPUT
 Store Y3
 
-	Jns area
+	Jns Area
 	Jump end
 
-
-/ DIVISION, divide X sobre Y 
-div,	DEC 0
-		Clear
-		Store count
-dloop,	Load X
-		Subt Y
-        Skipcond 400
-        Jump con
-        Add one
-con,	Skipcond 800
-		JumpI div
-		Store X
-		Load count
-		Add one
-		Store count
-		Jump dloop
-
-/Multiplicacion
-mult,   DEC 0
-        Clear
-        Store num
-mloop,  Load num
-        Add X
-        Store num
-
-        Load Y
-        Skipcond 400
-        Subt one
-        Store Y
-
-        Skipcond 400 / have we completed the multiplication?
-        Jump mloop / no; repeat loop
-        JumpI mult
-
-// VALOR ABSOLUTO
-abs,	DEC 0
-		Load valAbs
-		Skipcond 0
-		JumpI abs
-		Clear
-		Subt valAbs
-		Store valAbs
-		JumpI abs
 
 // AREA
 Area,	DEC 0
 		Load Y2
 		Subt Y3
+        Store valAbs
+		Jns abs
+		Load valAbs
 		Store F
 		Load X1
 		Store X
@@ -73,6 +32,9 @@ Area,	DEC 0
 		Store G
 		Load Y3
 		Subt Y1
+        Store valAbs
+		Jns abs
+		Load valAbs
 		Store H
 		Load X2
 		Store X
@@ -83,6 +45,9 @@ Area,	DEC 0
 		Store I
 		Load Y1
 		Subt Y2
+        Store valAbs
+		Jns abs
+		Load valAbs
 		Store J
 		Load X3
 		Store X
@@ -108,7 +73,52 @@ Area,	DEC 0
 		Store Y
 		Jns div
 		Load count
-		Store area
+		Store area	
+        JumpI Area
+
+/ DIVISION, divide X sobre Y 
+div,	DEC 0
+		Clear
+		Store count
+dloop,	Load X
+		Subt Y
+        Skipcond 400
+        Jump con
+        Add one
+con,	Skipcond 800
+		JumpI div
+		Store X
+		Load count
+		Add one
+		Store count
+		Jump dloop
+
+/Multiplicacion
+mult,   DEC 0
+loop,    Load num
+         Add X
+         Store num
+
+         Load Y
+         Skipcond 400
+         Subt one
+         Store Y
+
+         Skipcond 400 / have we completed the multiplication?
+         Jump loop / no; repeat loop
+         / yes, so exit the loop
+         JumpI mult
+        
+// VALOR ABSOLUTO
+abs,	DEC 0
+		Load valAbs
+		Skipcond 0
+		JumpI abs
+		Clear
+		Subt valAbs
+		Store valAbs
+		JumpI abs
+
 
 end,	Load area
 		Output 
@@ -148,3 +158,4 @@ temp,	DEC 0
 res,	DEC 0
 valAbs,	DEC 0
 area,	DEC 0
+n,		Dec 0
