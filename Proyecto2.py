@@ -13,7 +13,7 @@ def main():
     3,4,4,3,5,2
     6,3,6,9,6,8
     2,5,7,5,9,5"""
-    x1,y1,x2,y2,x3,y3=2,23,56,78,97,42
+    x1,y1,x2,y2,x3,y3=2,6,9,12,15,20  
     b1=comprobar(x1,x2,x3)
     b2=comprobar(y1,y2,y3)
     ladoA,ladoB,ladoC=lados(x1,x2,x3,y1,y2,y3)

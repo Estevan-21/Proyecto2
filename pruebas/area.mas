@@ -111,8 +111,7 @@ cc,		Load G
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store G
-        Output
+		Store G        
 		Load G
 		Store X
 		Load dos
