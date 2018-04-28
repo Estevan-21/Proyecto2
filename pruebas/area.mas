@@ -34,7 +34,7 @@ ba,		Store F
 		Store Y
 		Jns mult
 		Load num
-		Store G
+		Store G        
 		Load Y3
 		Subt Y1
 		Skipcond 0
@@ -42,23 +42,23 @@ ba,		Store F
         Store valAbs
         Load n2
 		Add neg
-		Store n1
+		Store n2
 		Jns abs
 		Load valAbs
-bb,		Store H
+bb,		Store H		
 		Load X2
 		Store X
 		Load H
-		Store Y
+		Store Y 
 		Jns mult
 		Load num
-		Store I
+		Store I          
 		Load Y1
 		Subt Y2
 		Skipcond 0
 		Jump bc
         Store valAbs
-        Load n1
+        Load n3
 		Add neg
 		Store n3
 		Jns abs
@@ -67,55 +67,59 @@ bc,		Store J
 		Load X3
 		Store X
 		Load J
-		Store Y
+		Store Y        
 		Jns mult
 		Load num
-		Store K
+		Store K        
+
+// Terminan asignaciones       
 		Load n1
 		Skipcond 0
 		Jump ca
 		Load G
 		Store p
-		Load G
+ 		Load G
 		Clear
 		Subt p
-		Store G	
-ca,		Load G
-		Add I
-		Store G
-		Load n2
+		Store G	     
+ca,		Load n2
 		Skipcond 0
 		Jump cb
-		Load 
+		Load I
 		Store p
-		Load K
+ 		Load I
 		Clear
 		Subt p
-		Store K
-cb,		Load G
-		Add K
-		Store G
-		Load n3
+		Store I	       
+cb,		Load n3
 		Skipcond 0
 		Jump cc
 		Load K
 		Store p
-		Load G
+ 		Load K
 		Clear
 		Subt p
-		Store G	
+		Store K	
+                       
+cc,		Load G
+		Add I
+		Store G        
+		Load G
+		Add K
+		Store G       
 		Load G
 		Store valAbs
 		Jns abs
 		Load valAbs
 		Store G
+        Output
 		Load G
 		Store X
 		Load dos
 		Store Y
 		Jns div
 		Load count
-		Store area	
+		Store area         
         JumpI Area
 
 / DIVISION, divide X sobre Y 
@@ -136,7 +140,10 @@ con,	Skipcond 800
 		Jump dloop
 
 /Multiplicacion
-mult,   DEC 0
+mult,    DEC 0
+		 Load num
+         Clear
+         Store num
 loop,    Load num
          Add X
          Store num

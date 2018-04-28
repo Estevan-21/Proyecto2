@@ -13,7 +13,7 @@ def main():
     3,4,4,3,5,2
     6,3,6,9,6,8
     2,5,7,5,9,5"""
-    x1,y1,x2,y2,x3,y3=9,5,4,2,2,1
+    x1,y1,x2,y2,x3,y3=2,23,56,78,97,42
     b1=comprobar(x1,x2,x3)
     b2=comprobar(y1,y2,y3)
     ladoA,ladoB,ladoC=lados(x1,x2,x3,y1,y2,y3)
@@ -50,10 +50,10 @@ def  comprobar(x,y,z):
         return True
 
 
-def area(x1,x2,x3,y1,y2,y3):
-    print (y3-y1)
+def area(x1,x2,x3,y1,y2,y3):    
     area_triangulo=abs(x1*(y2-y3)+x2*(y3-y1)+x3*(y1-y2))
-    print ("Area",area_triangulo)
+    print (area_triangulo)
+    print ("Area",area_triangulo/2)
 
 def perimetro(ladoA,ladoB,ladoC):
     perim=ladoA+ladoB+ladoC
