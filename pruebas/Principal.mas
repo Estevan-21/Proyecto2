@@ -74,6 +74,9 @@ ccomp2,	Load X2
 		JnS mult
 		Load num
 		Add temp
+		Store X
+		JnS raiz
+		Load b
 		Store A
 
 		Load X2
@@ -96,6 +99,9 @@ ccomp2,	Load X2
 		JnS mult
 		Load num
 		Add temp
+		Store X
+		JnS raiz
+		Load b
 		Store B
 
 		Load X3
@@ -118,6 +124,9 @@ ccomp2,	Load X2
 		JnS mult
 		Load num
 		Add temp
+		Store X
+		JnS raiz
+		Load b
 		Store C
 		Jns comp11
 
