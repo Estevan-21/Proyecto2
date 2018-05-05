@@ -59,142 +59,151 @@ ccomp2,	Load X2
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Store temp
+
 		Load Y2
 		Subt Y1
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Add temp
-		Store X
+		Store a
 		JnS raiz
 		Load b
-		Store A
+		Subt one
+		Store ladoA
+		Output
 
 		Load X2
 		Subt X3
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Store temp
+
 		Load Y2
 		Subt Y3
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Add temp
-		Store X
+		Store a
+		Store Xdiv
 		JnS raiz
 		Load b
-		Store B
+		Store ladoB
+		Output
 
 		Load X3
 		Subt X1
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Store temp
+
 		Load Y3
 		Subt Y1
 		Store valAbs
 		Jns abs
 		Load valAbs
-		Store X 
-		Store Y
+		Store Xmult 
+		Store Ymult
 		JnS mult
 		Load num
 		Add temp
-		Store X
+		Store a
+		Store Xdiv
 		JnS raiz
 		Load b
-		Store C
+		Store ladoC
+		Output
 		Jns comp11
 
-comp11,	Load A
-		Subt B
+comp11,	Load ladoA
+		Subt ladoB
 		Skipcond 800
 		Jump comp21
 		Jump comp12
-comp12,	Load B
-		Subt C
+comp12,	Load ladoB
+		Subt ladoC
 		Skipcond 800
 		Jump comp21
 		Jump comp13
-comp13,	Load B
-		Add	C
-		Subt A
+comp13,	Load ladoB
+		Add	ladoC
+		Subt ladoA
 		Skipcond 400
 		Jump comp21
 		Jump noes
-comp21,	Load B
-		Subt A
+comp21,	Load ladoB
+		Subt ladoA
 		Skipcond 800
 		Jump comp31
 		Jump comp22
-comp22,	Load B
-		Subt C
+comp22,	Load ladoB
+		Subt ladoC
 		Skipcond 800
 		Jump comp31
 		Jump comp23
-comp23,	Load A
-		Add B
-		Subt C
+comp23,	Load ladoA
+		Add ladoB
+		Subt ladoC
 		Skipcond 400
 		Jump comp31
 		Jump noes
-comp31,	Load C
-		Subt B
+comp31,	Load ladoC
+		Subt ladoB
 		Skipcond 800
 		Jump sies
 		Jump comp32
-comp32,	Load C
-		Subt A
+comp32,	Load ladoC
+		Subt ladoA
 		Skipcond 800
 		Jump sies
 		Jump comp33
-comp33,	Load A
-		Add B
-		Subt C
+comp33,	Load ladoA
+		Add ladoB
+		Subt ladoC
 		Skipcond 400
 		Jump noes
 		Jump sies
 noes,	Jump cancel
 sies, 	Load cero
 		Store res
-		Jump ab
+		JnS Area /// Error
 
 / DIVISION, divide X sobre Y 
 div,	DEC 0
 		Clear
 		Store count
-dloop,	Load X
-		Subt Y
+dloop,	Load Xdiv
+		Subt Ydiv
         Skipcond 400
         Jump con
         Add one
 con,	Skipcond 800
 		JumpI div
-		Store X
+		Store Xdiv
 		Load count
 		Add one
 		Store count
@@ -204,17 +213,17 @@ con,	Skipcond 800
 // POTENCIA, W es la base y Z es el exponente
 pote,   DEC 0
         Load W
-        Store X
+        Store Xmult
         Store num
-        Store Y
+        Store Ymult
         Load Z
         Subt one
         Store Z
 ploop,  Load num
-        Store X
+        Store Xmult
         JnS mult
         Load W
-        Store Y
+        Store Ymult
                 
         Load Z
         Subt one
@@ -229,13 +238,13 @@ mult,   DEC 0
         Clear
         Store num
 mloop,  Load num
-        Add X
+        Add Xmult
         Store num
 
-        Load Y
+        Load Ymult
         Skipcond 400
         Subt one
-        Store Y
+        Store Ymult
 
         Skipcond 400 / have we completed the multiplication?
         Jump mloop / no; repeat loop
@@ -244,30 +253,30 @@ mloop,  Load num
 //RAIZ: Saca la raíz de lo que haya en el acumulador
 		// division por 2
 raiz,	DEC 0
-		Store X
+		Store Xdiv
 		Load dos
-		Store Y
+		Store Ydiv
 		JnS div
-        Load count
-	 	Store b
-	 	// res^2
-	 	Load b
-		Store X
-		Store Y
+	    Load count
+		Store b
+		// res^2
+		Load b
+		Store Xmult
+		Store Ymult
 		JnS mult
-        Load num
+	    Load num
 		Store c        
 loop,	Load c
 		Subt a
 		Skipcond 800
 		Jump loop2
 		Load b
-		Store X
+		Store Xdiv
 		JnS div
 		Load count
 		Store b
-		Store X
-		Store Y
+		Store Xmult
+		Store Ymult
 		JnS mult
         Load num
 		Store c
@@ -276,13 +285,12 @@ loop,	Load c
 loop2,	Load c
 		Subt a
 		Skipcond 0
-		Jump end
+		JumpI raiz // fin
 		Load b
 		Add one
 		Store b
-		Store b
-		Store X
-		Store Y
+		Store Xmult
+		Store Ymult
 		JnS mult
         Load num
 		Store c
@@ -347,9 +355,13 @@ Area,	DEC 0
 		Jns div
 		Load count
 		Store area
-
-
-
+		Output
+perim,	Load ladoA
+		Add ladoB
+		Add ladoC
+		Store perimetro
+		Output
+		Jump fin
 		
 / Salida
 end,	Load num
@@ -369,6 +381,13 @@ X3, DEC 0
 Y1, DEC 0
 Y2, DEC 0
 Y3, DEC 0
+Xmult,	DEC 0
+Ymult,	DEC 0
+Xdiv,	DEC 0
+Ydiv,	DEC 0
+ladoA,	DEC 0
+ladoB,	DEC 0
+ladoC,	DEC 0
 num,	DEC 0
 cero,	DEC 0
 one,	DEC 1
@@ -393,3 +412,4 @@ temp,	DEC 0
 res,	DEC 0
 valAbs,	DEC 0
 area,	DEC 0
+perimetro, DEC 0

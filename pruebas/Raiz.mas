@@ -38,7 +38,6 @@ loop2,	Load c
 		Load b
 		Add uno
 		Store b
-		Store b
 		Store X
 		Store Y
 		JnS mult
