@@ -4,7 +4,7 @@ comp11,	Load	 A
 	Skipcond 800
 	Jump 	 comp21
 	Jump 	 comp12
-comp12,	Load 	 B
+comp12,	Load 	 A
 	Subt	 C
 	Skipcond 800
 	Jump	 comp21
@@ -14,7 +14,7 @@ comp13,	Load 	 B
 	Subt	 A
 	Skipcond 400
 	Jump 	 comp21
-	Jump	 noes
+	Jump	 noes // false
 comp21,	Load	 B
 	Subt	 A
 	Skipcond 800
@@ -26,11 +26,11 @@ comp22,	Load 	 B
 	Jump	 comp31
 	Jump	 comp23
 comp23,	Load 	 A
-	Add	 B
-	Subt	 C
+	Add	 C
+	Subt	 B
 	Skipcond 400
 	Jump 	 comp31
-	Jump	 noes
+	Jump	 noes // false
 comp31,	Load	 C
 	Subt	 B
 	Skipcond 800
@@ -45,16 +45,16 @@ comp33,	Load 	 A
 	Add	 B
 	Subt	 C
 	Skipcond 400
-	Jump 	 noes
-	Jump	 sies
+	Jump 	 sies
+	Jump	 noes
 noes,	Load	 nuno
 	Store	 res
 	Halt
 sies, 	Load	 cero
 	Store	 res
 	Halt
-A,	dec 1
-B,	dec 1
+A,	dec 5
+B,	dec 3
 C, 	dec 8 
 res,	dec 0
 nuno,	dec -1

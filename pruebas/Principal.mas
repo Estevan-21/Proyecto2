@@ -42,7 +42,7 @@ ccomp1,	Load count1
 do,		Load A
 		Subt C
 		Skipcond 400
-        jump ab	
+        Jump ab	
 tr,		Load B
 		Subt C
 		Skipcond 400      
@@ -107,6 +107,7 @@ ccomp2,	Load X2
 		Store Xdiv
 		JnS raiz
 		Load b
+		Subt one
 		Store ladoB
 		Output
 
@@ -135,62 +136,61 @@ ccomp2,	Load X2
 		Store Xdiv
 		JnS raiz
 		Load b
+		Subt one
 		Store ladoC
 		Output
-		Jns comp11
+		Jump comp11
 
-comp11,	Load ladoA
-		Subt ladoB
+comp11,	Load	 ladoA
+		Subt	 ladoB
 		Skipcond 800
-		Jump comp21
-		Jump comp12
-comp12,	Load ladoB
-		Subt ladoC
+		Jump 	 comp21
+		Jump 	 comp12
+comp12,	Load 	 ladoA
+		Subt	 ladoC
 		Skipcond 800
-		Jump comp21
-		Jump comp13
-comp13,	Load ladoB
-		Add	ladoC
-		Subt ladoA
+		Jump	 comp21
+		Jump	 comp13
+comp13,	Load 	 ladoB
+		Add	 	 ladoC
+		Subt	 ladoA
 		Skipcond 400
-		Jump comp21
-		Jump noes
-comp21,	Load ladoB
-		Subt ladoA
+		Jump 	 comp21
+		Jump	 noes // false
+comp21,	Load	 ladoB
+		Subt	 ladoA
 		Skipcond 800
-		Jump comp31
-		Jump comp22
-comp22,	Load ladoB
-		Subt ladoC
+		Jump 	 comp31
+		Jump 	 comp22
+comp22,	Load 	 ladoB
+		Subt	 ladoC
 		Skipcond 800
-		Jump comp31
-		Jump comp23
-comp23,	Load ladoA
-		Add ladoB
-		Subt ladoC
+		Jump	 comp31
+		Jump	 comp23
+comp23,	Load 	 ladoA
+		Add	 	 ladoC
+		Subt	 ladoB
 		Skipcond 400
-		Jump comp31
-		Jump noes
-comp31,	Load ladoC
-		Subt ladoB
+		Jump 	 comp31
+		Jump	 noes // false
+comp31,	Load	 ladoC
+		Subt	 ladoB
 		Skipcond 800
-		Jump sies
-		Jump comp32
-comp32,	Load ladoC
-		Subt ladoA
+		Jump 	 sies
+		Jump 	 comp32
+comp32,	Load 	 ladoC
+		Subt	 ladoA
 		Skipcond 800
-		Jump sies
-		Jump comp33
-comp33,	Load ladoA
-		Add ladoB
-		Subt ladoC
+		Jump	 sies
+		Jump	 comp33
+comp33,	Load 	 ladoA
+		Add	 	 ladoB
+		Subt	 ladoC
 		Skipcond 400
-		Jump noes
-		Jump sies
+		Jump 	 sies
+		Jump	 noes // false
 noes,	Jump cancel
-sies, 	Load cero
-		Store res
-		JnS Area /// Error
+sies, 	Jump Area
 
 / DIVISION, divide X sobre Y 
 div,	DEC 0
@@ -306,8 +306,7 @@ abs,	DEC 0
 		JumpI abs
 
 // AREA
-Area,	DEC 0
-		Load Y2
+Area,	Load Y2
 		Subt Y3
 		Store F
 		Load X1
@@ -355,20 +354,19 @@ Area,	DEC 0
 		Jns div
 		Load count
 		Store area
-		Output
 perim,	Load ladoA
 		Add ladoB
 		Add ladoC
 		Store perimetro
-		Output
-		Jump fin
+		Jump end
 		
 / Salida
-end,	Load num
+end,	Load area
+		Output
+		Load perimetro
 		Output
 		Jump fin
-cancel, Load neg
-		Output		
+cancel, Load neg	
 fin,	Halt
         
 W,	DEC 0
@@ -392,7 +390,7 @@ num,	DEC 0
 cero,	DEC 0
 one,	DEC 1
 dos,	DEC 2
-tree,	DEC 2
+tree,	DEC 3
 A,	DEC 0
 B,	DEC 0
 C,	DEC 0
