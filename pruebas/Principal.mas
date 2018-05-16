@@ -78,7 +78,6 @@ ccomp2,	Load X2
 		Store a
 		JnS raiz
 		Load b
-		Subt one
 		Store ladoA
 		Output
 
@@ -107,7 +106,6 @@ ccomp2,	Load X2
 		Store Xdiv
 		JnS raiz
 		Load b
-		Subt one
 		Store ladoB
 		Output
 
@@ -136,7 +134,6 @@ ccomp2,	Load X2
 		Store Xdiv
 		JnS raiz
 		Load b
-		Subt one
 		Store ladoC
 		Output
 		Jump comp11
