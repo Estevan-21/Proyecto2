@@ -138,49 +138,49 @@ ccomp2,	Load X2
 		Output
 		Jump comp11
 
-comp11,	Load	 ladoA
+comp11,		Load	 ladoA
 		Subt	 ladoB
 		Skipcond 800
 		Jump 	 comp21
 		Jump 	 comp12
-comp12,	Load 	 ladoA
+comp12,		Load 	 ladoA
 		Subt	 ladoC
 		Skipcond 800
 		Jump	 comp21
 		Jump	 comp13
-comp13,	Load 	 ladoB
-		Add	 	 ladoC
+comp13,		Load 	 ladoB
+		Add	 ladoC
 		Subt	 ladoA
 		Skipcond 400
 		Jump 	 comp21
 		Jump	 noes // false
-comp21,	Load	 ladoB
+comp21,		Load	 ladoB
 		Subt	 ladoA
 		Skipcond 800
 		Jump 	 comp31
 		Jump 	 comp22
-comp22,	Load 	 ladoB
+comp22,		Load 	 ladoB
 		Subt	 ladoC
 		Skipcond 800
 		Jump	 comp31
 		Jump	 comp23
-comp23,	Load 	 ladoA
-		Add	 	 ladoC
+comp23,		Load 	 ladoA
+		Add	 ladoC
 		Subt	 ladoB
 		Skipcond 400
 		Jump 	 comp31
 		Jump	 noes // false
-comp31,	Load	 ladoC
+comp31,		Load	 ladoC
 		Subt	 ladoB
 		Skipcond 800
 		Jump 	 sies
 		Jump 	 comp32
-comp32,	Load 	 ladoC
+comp32,		Load 	 ladoC
 		Subt	 ladoA
 		Skipcond 800
 		Jump	 sies
 		Jump	 comp33
-comp33,	Load 	 ladoA
+comp33,		Load 	 ladoA
 		Add	 	 ladoB
 		Subt	 ladoC
 		Skipcond 400
@@ -247,7 +247,7 @@ mloop,  Load num
         Jump mloop / no; repeat loop
         JumpI mult
 
-//RAIZ: Saca la raíz de lo que haya en el acumulador
+//RAIZ: Saca la raiz de lo que haya en el acumulador
 		// division por 2
 raiz,	DEC 0
 		Store Xdiv
@@ -467,3 +467,4 @@ n1,		Dec 0
 n2,		Dec 0
 n3,		Dec 0
 perimetro, DEC 0
+
